@@ -15,12 +15,23 @@ public class UserService {
 
     public UserResponse fetchUsers() {
         String url = "https://reqres.in/api/users";
-        return webClient
+
+        // Fetch data from API
+        UserResponse response = webClient
                 .get()
                 .uri(url)
                 .retrieve()
-                .bodyToMono(UserResponse.class) // Asynchronously fetch and map to UserResponse
-                .block(); // Block to get the response synchronously.
+                .bodyToMono(UserResponse.class)
+                .block();
+
+        // Print the user data to console
+        if (response != null && response.getData() != null) {
+            response.getData().forEach(user -> System.out.println(user));
+        } else {
+            System.out.println("No user data found.");
+        }
+
+        return response;
     }
 }
 

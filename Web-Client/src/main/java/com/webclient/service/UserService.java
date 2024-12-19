@@ -23,3 +23,12 @@ public class UserService {
                 .block(); // Block to get the response synchronously.
     }
 }
+
+/*  Let’s break this down step by step:
+
+	1. webClient.get(): Tells WebClient to make a GET request.
+	2. uri(url): Specifies the URL of the API.
+	3. retrieve(): Sends the HTTP request and waits for the API’s response.
+	4. bodyToMono(UserResponse.class): Converts the JSON response from the API into a Java object of type UserResponse. (Think of Mono as a container for the response that will arrive later.)
+	5. block(): Waits for the API response to arrive synchronously (blocks the thread until data is received). This is useful if you want to use the result immediately.
+*/
